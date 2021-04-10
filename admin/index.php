@@ -25,7 +25,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard Claim Covid 19 - RSIH</title>
+  <title>Dashboard Portal Information - RSIH</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,9 +69,26 @@
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
-                  <?php
-                    include('jumlah_berkas_pemberkasan.php');
-                  ?>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-default text-uppercase mb-1">Jumlah Dokter Praktek Hari ini</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
+                            //Menampilkan total pemberkasan
+                            if(empty($totalentry)){
+                              echo('0');
+                            }else{
+                              echo($totalentry);
+                            }
+                          ?> Dokter</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,9 +97,26 @@
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
-                  <?php
-                    include('jumlah_berkas_verifikasi.php');
-                  ?>
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-default text-uppercase mb-1">Dokter Praktek Poli Depan</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
+                            //Menampilkan total pemberkasan
+                            if(empty($totalentry)){
+                              echo('0');
+                            }else{
+                              echo($totalentry);
+                            }
+                          ?> Dokter</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -91,9 +125,26 @@
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
-                  <?php
-                    include('jumlah_berkas_entry.php');
-                  ?>  
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-default text-uppercase mb-1">Dokter Praktek Poli Belakang</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
+                            //Menampilkan total pemberkasan
+                            if(empty($totalentry)){
+                              echo('0');
+                            }else{
+                              echo($totalentry);
+                            }
+                          ?> Dokter</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
+                    </div>
+                  </div> 
                 </div>
               </div>
             </div>

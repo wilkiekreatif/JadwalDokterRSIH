@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('../config.php');
 
 session_start();
 
@@ -39,7 +39,7 @@ if (mysqli_num_rows($q) == 1) {
 	$_SESSION['nama_lengkap'] = $snama;
 	$_SESSION['level'] = $level;
 	//redirect ke halaman index
-	header('location:admin/');
+	header('location:../admin/');
 } else {
 	//kalau username ataupun password tidak terdaftar di database
 	header('location:index.php?error=4');

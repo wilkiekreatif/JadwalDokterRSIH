@@ -6,7 +6,7 @@
         <!-- <div class="sidebar-brand-icon">
           <i class="fas fa-laugh-wink"></i>
         </div> -->
-        <div class="sidebar-brand-text mx-3">Claim Covid-19</div>
+        <div class="sidebar-brand-text mx-3">Portal Information</div>
       </a>
 
       <!-- Divider -->

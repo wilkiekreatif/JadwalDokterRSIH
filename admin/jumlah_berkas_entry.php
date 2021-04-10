@@ -20,9 +20,7 @@
 ?>
 <div class="row no-gutters align-items-center">
   <div class="col mr-2">
-    <div class="text-xs font-weight-bold text-default text-uppercase mb-1">Jumlah Entry Periode <?php
-        echo($periode.' '.$tahun);
-    ?></div>
+    <div class="text-xs font-weight-bold text-default text-uppercase mb-1">Jumlah Dokter Praktek Hari ini</div>
     <div class="row no-gutters align-items-center">
       <div class="col-auto">
         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
