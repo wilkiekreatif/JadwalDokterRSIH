@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <?php
   session_start();
@@ -11,12 +10,6 @@
 
   //menampilkan angka
   include('../config.php');
-  $q1 = mysqli_query($connect,"SELECT * FROM referensi WHERE id=1");
-  $q2 = mysqli_query($connect,"SELECT * FROM info WHERE id=1");
-  $q1data = mysqli_fetch_array($q1);
-  $periode = $q1data['periode'];
-  $tahun = $q1data['tahun'];
-  $q2data = mysqli_fetch_array($q2);
 ?>
 <head>
   <meta charset="utf-8">
@@ -93,7 +86,7 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Dokter Praktek Poli Depan -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
@@ -103,7 +96,7 @@
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
-                            //Menampilkan total pemberkasan
+                            //Menampilkan jumlah dokter praktek
                             if(empty($totalentry)){
                               echo('0');
                             }else{
@@ -121,7 +114,7 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example -->
+            <!-- Dokter Praktek Poli Belakang -->
             <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
@@ -131,7 +124,7 @@
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
-                            //Menampilkan total pemberkasan
+                            //Menampilkan jumlah dokter praktek
                             if(empty($totalentry)){
                               echo('0');
                             }else{
@@ -152,80 +145,126 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Content Column -->
-            <div class="col-lg-4 mb-4">
+            <!-- Kolom Dokter Poli Depan -->
+            <div class="col-lg-6 mb-6">
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Persentase Periode <?php
-                          echo($q1data['periode'].' '.$q1data['tahun']);
-                      ?></h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar Dokter Praktek Poli Depan</h6>
                 </div>
                 <div class="card-body">
-                  <!-- Persentase Pemberkasan -->
-                  <?php
-                    include('persentase_pemberkasan.php');
-                  ?><br>
-                  <!-- Persentase Verifikasi -->
-                  <?php
-                    include('persentase_verifikasi.php');
-                  ?><br>
-                  <!-- Persentase Entry -->
-                  <?php
-                    include('persentase_entry.php');
-                  ?><br>
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Dokter</th>
+                          <th>Poli</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                      <tr>
+                          <th>No</th>
+                          <th>Nama Dokter</th>
+                          <th>Poli</th>
+                          <th>Status</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <?php
+                          $level=$_SESSION['level'];
+                          //membuat query membaca record dari tabel User      
+                          $query="SELECT * FROM user WHERE level='$level'";
+                          //menjalankan query      
+                          if (mysqli_query($connect,$query)) {      
+                            $result=mysqli_query($connect,$query);     
+                          } else die ("Error menjalankan query". mysql_error());
+                          //mengecek record kosong     
+                          if (mysqli_num_rows($result) > 0) {
+                            $no='1';
+                            //menampilkan hasil query      
+                            while($row = mysqli_fetch_array($result)) {      
+                              echo "<tr>";
+                              echo "  <td>".$no."</td>";    
+                              echo "  <td>".$row["nama_lengkap"]."</td>";
+                              echo "  <td>".$row["username"]."</td>";      
+                              echo "  <td>".$row["bagian"]."</td>";
+                              // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
+                              // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
+                              // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
+                              echo "</tr>";   
+                              $no++;
+                            }    
+                          }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-8 mb-4">
-              <!-- Illustrations -->
+            <!-- Kolom Dokter Poli Depan -->
+            <div class="col-lg-6 mb-6">
+              <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Keterangan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar Dokter Praktek Hari ini</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                  <th>Bagian</th>
-                                  <th>Keterangan</th>
-                                  <th>Update Time</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                  <th>Bagian</th>
-                                  <th>Keterangan</th>
-                                  <th>Update Time</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <tr width="50">
-                                  <td width="145px">PEMBERKASAN</td>
-                                  <td width="335px"><?php
-                                    include('keterangan_pemberkasan.php');
-                                  ?></td>
-                                </tr>
-                                <tr>
-                                  <td width="145px">VERIFIKASI</td>
-                                  <td width="335px"><?php
-                                    include('keterangan_verifikasi.php');
-                                  ?></td>
-                                </tr>
-                                <tr>
-                                  <td width="145px">ENTRY</td>
-                                  <td width="335px"><?php
-                                    include('keterangan_entry.php');
-                                  ?></td>
-                                </tr>  
-                            </tbody>
-                        </table>
-                    </div>
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Dokter</th>
+                          <th>Tempat Praktek</th>
+                          <th>Bagian</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Username</th>
+                          <th>Bagian</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <?php
+                          $level=$_SESSION['level'];
+                          //membuat query membaca record dari tabel User      
+                          $query="SELECT * FROM user WHERE level='$level'";
+                          //menjalankan query      
+                          if (mysqli_query($connect,$query)) {      
+                            $result=mysqli_query($connect,$query);     
+                          } else die ("Error menjalankan query". mysql_error());
+                          //mengecek record kosong     
+                          if (mysqli_num_rows($result) > 0) {
+                            $no='1';
+                            //menampilkan hasil query      
+                            while($row = mysqli_fetch_array($result)) {      
+                              echo "<tr>";
+                              echo "  <td>".$no."</td>";    
+                              echo "  <td>".$row["nama_lengkap"]."</td>";
+                              echo "  <td>".$row["username"]."</td>";      
+                              echo "  <td>".$row["bagian"]."</td>";
+                              // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
+                              // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
+                              // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
+                              echo "</tr>";   
+                              $no++;
+                            }    
+                          }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>

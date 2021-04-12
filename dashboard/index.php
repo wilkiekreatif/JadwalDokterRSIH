@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include('../config.php');
+?>
 <html>
 <head>
 	<title>Jadwal Poliklinik</title>
@@ -6,101 +9,63 @@
 	<script src="function.js"></script>
 </head>
 <body>
-
-
 	
 	<header>
 		<div class="top">
-			<h4 class="tanggal">Tanggal uptodate</h4>
-			<h4 class="jam">Jam sekarang</h4>
+			<h4 class="tanggal"><?php
+				//menampilkan tanggal hari ini
+				echo date('l, d-m-Y');
+			?></h4>
+			<h4 class="jam"><?php
+				// menampilkan jam sekarang
+				echo date('H:i:s');
+			?></h4>
 			<h1>POLIKLINIK RUMAH SAKIT INTAN HUSADA</h1>
 		</div>
 	</header>
 
-
 	<div class="list-dokter">
 		<h2>JADWAL DOKTER HARI INI</h2>
 
-		<div class="dok">
-			<a target="_blank" href="img\Hendy Yogya.jpg">
-				<img src="img\Hendy Yogya.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Hendy Yogya, Sp.KJ(K)</div>
-			<h4>Spesialis Kejiwaan</h4>
-			<h3>Pukul : 16.00 - 19.00</h3>
-			<h5>- Status Pasien -</h5>
-			
-		</div>
-
-		<div class="dok">
-			<a target="_blank" href="img\Arif Satria Prabowo 1x1.jpg">
-				<img src="img\Arif Satria Prabowo 1x1.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Arif Satria Prabowo, Sp.OG</div>
-			<h4>Spesialis Obgyn</h4>
-			<h3>Pukul : 12.00 - 14.00</h3>
-			<!-- <h3>Pukul : 11.00 - 13.00</h3> -->
-			<h5>- Status Pasien -</h5>
-		</div>
-
-		<div class="dok">
-			<a target="_blank" href="img\Riki Vita THT.jpg">
-				<img src="img\Riki Vita THT.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Riki Vita W, SpTHT-KL</div>
-			<h4>Spesialis THT</h4>
-			<h3>Pukul : 14.00 - 16.00</h3>
-			<h5>- Status Pasien -</h5>
-		</div>
-
-		<div class="dok">
-			<a target="_blank" href="img\Gustomo Panantro.jpg">
-				<img src="img\Gustomo Panantro.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Gustomo Panantro,Sp A, M.Kes</div>
-			<h4>Spesialis Anak</h4>
-			<h3>Pukul : 15.00 - 17.00</h3>
-			<!-- <h3>Pukul : 10.00 - 12.00</h3>
-			<h3>Pukul : 10.00 - 12.00</h3> -->
-			<h5>- Status Pasien -</h5>
-		</div>
-
-		<div class="dok">
-			<a target="_blank" href="img\Hadiyana.jpg">
-				<img src="img\Hadiyana.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Hadiyana Suryadi, Sp.B</div>
-			<h4>Spesialis Dalam</h4>
-			<h3>Pukul : 07.00 - 09.00</h3>
-			<!-- <h3>Pukul : 10.00 - 12.00</h3>
-			<h3>Pukul : 10.00 - 12.00</h3> -->
-			<h5>- Status Pasien -</h5>
-		</div>
-
-		<div class="dok">
-			<a target="_blank" href="img\Yanto Widiantoro.jpg">
-				<img src="img\Yanto Widiantoro.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Yanto Widiantoro, Sp.KK</div>
-			<h4>Spesialis Kulit dan Kelamin</h4>
-			<h3>Pukul : 11.00 - 14.00</h3>
-			<!-- <h3>Pukul : 10.00 - 12.00</h3>
-			<h3>Pukul : 10.00 - 12.00</h3> -->
-			<h5>- Status Pasien -</h5>
-		</div>
-
-		<div class="dok">
-			<a target="_blank" href="img\Sena Hadeaih.jpg">
-				<img src="img\Sena Hadeaih.jpg" width="300" height="300">
-			</a>
-			<div class="desc">dr. Sena Hadeaih, Sp.U</div>
-			<h4>Spesialis Urologi</h4>
-			<h3>Pukul : 14.00 - 16.00</h3>
-			<!-- <h3>Pukul : 10.00 - 12.00</h3>
-			<h3>Pukul : 10.00 - 12.00</h3> -->
-			<h5>- Status Pasien -</h5>
-			
-		</div>
+		<!-- loop menampilkan dokter -->
+		<?php
+			//membuat query membaca record dari tabel User      
+			$query="SELECT a.*,b.* FROM dokter a, jadwal b WHERE b.id_dr=a.id";
+			//menjalankan query      
+			if (mysqli_query($connect,$query)) {      
+			$result=mysqli_query($connect,$query);     
+			} else die ("Error menjalankan query". mysql_error());
+			//mengecek record kosong     
+			if (mysqli_num_rows($result) > 0) {
+				$no='1';
+				//menampilkan hasil query      
+				while($row = mysqli_fetch_array($result)) {      
+					?>
+						<div class="dok">
+							<a target="_blank" href="<?php echo $row['photo']; ?>">
+								<img src="<?php echo $row['photo']; ?>" width="300" height="300">
+							</a>
+							<div class="desc"><?php echo $row['nama']; ?></div>
+							<h4><?php echo $row['spesialis']; ?></h4>
+							<h3><?php echo $row['jam1']; ?></h3>
+							<h3><?php echo $row['jam2']; ?></h3>
+							<h3><?php echo $row['jam3']; ?></h3>
+							<h5>- Status Pasien -</h5>
+						</div>
+					<?php
+					// echo "<tr>";
+					// echo "  <td>".$no."</td>";    
+					// echo "  <td>".$row["nama_lengkap"]."</td>";
+					// echo "  <td>".$row["username"]."</td>";      
+					// echo "  <td>".$row["bagian"]."</td>";
+					// echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
+					// echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
+					// echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
+					//echo "</tr>";   
+					$no++;
+				}    
+			}
+		?>
 	</div>
 
 	<!-- <div class="running-txt">

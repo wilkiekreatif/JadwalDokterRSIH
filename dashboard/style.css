@@ -1,7 +1,7 @@
 body {
-	margin-left:-1px;
+	margin-left: -1px;
 	margin-right: 0px;
-	margin-top:-21px;
+	margin-top: -21px;
 	font-family: roboto;
 
 }
@@ -13,12 +13,12 @@ body {
 	margin-top: auto;
 	padding: 0px 0px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	
+
 }
 
 .top h1 {
 	color: white;
-	text-align: center;	
+	text-align: center;
 }
 
 .tanggal {
@@ -26,13 +26,13 @@ body {
 	color: white;
 	padding-left: 50px;
 	padding-top: 10px;
-	
+
 }
 
 .jam {
-	float:right;
+	float: right;
 	color: white;
-	margin-top :-50px;
+	margin-top: -50px;
 	padding-right: 70px;
 }
 
@@ -45,22 +45,31 @@ body {
 }
 
 .list-dokter {
-	margin-left: 110px;
-	padding-top: 2px;
-	
+	margin-left: 5%;
+	margin-right: 5%;
+	padding-top: 2%;
+	display: flex;
+	flex: wrap;
+
 }
+
+.title-jadwal {
+	text-align: center;
+}
+
 .dok {
-	float:left;
+	/* float:left; */
 	border: 1px solid #ccc;
 	margin: 5px;
-	width: 150px;
+	width: 100%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	text-align: center;
 	/* padding-left: 17px; */
-	
+	display: auto;
+
 }
 
-.dok:hover{
+.dok:hover {
 	border: 1px solid #777;
 }
 
@@ -73,12 +82,12 @@ body {
 .dok h4 {
 	text-align: center;
 	margin-top: 10px;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 .dok h3 {
 	text-align: center;
-	margin-top:-10px;
+	margin-top: -10px;
 	font-size: 13px;
 
 
@@ -93,7 +102,7 @@ body {
 	border-bottom: solid rgb(247, 107, 107);
 }
 
-.footer	{
+.footer {
 	color: white;
 	line-height: 50px;
 	background-color: #00C7AC;
@@ -115,7 +124,7 @@ body {
 	overflow: hidden;
 }
 
-.running-txt h2{
+.running-txt h2 {
 	float: left;
 	padding-right: 5px;
 	color: #331d1d;
@@ -132,8 +141,11 @@ body {
 }
 
 @keyframes example {
-	from{color: red;}
-	to {color: rgb(0, 179, 0);}
+	from {
+		color: red;
+	}
+
+	to {
+		color: rgb(0, 179, 0);
+	}
 }
-
-

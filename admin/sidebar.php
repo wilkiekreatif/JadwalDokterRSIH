@@ -23,63 +23,18 @@
           <span>Dashboard</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
       <?php
         if($_SESSION['level']==0){
       ?>
-        <!-- Heading -->
-        <div class="sidebar-heading">
-          Bagian
-        </div>
-
-        <li class="nav-item <?php
-          if(($_SESSION['menu']=='pemberkasan')OR($_SESSION['menu']=='referensi')){
-            echo('active');
-          }
-        ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Pemberkasan</span>
-          </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Sub Menu:</h6>
-              <a class="collapse-item <?php
-          if($_SESSION['menu']=='referensi'){
-            echo('active');
-          }
-        ?>" href="referensi.php">Referensi</a>
-
-              <a class="collapse-item <?php
-          if($_SESSION['menu']=='pemberkasan'){
-            echo('active');
-          }
-        ?>" href="pemberkasan.php">Update Data</a>
-            </div>
-          </div>
-        </li>
-
         <!-- Nav Item - Verifikasi -->
         <li class="nav-item <?php
-          if($_SESSION['menu']=='verifikasi'){
+          if($_SESSION['menu']=='daily_update'){
             echo('active');
           }
         ?>">
           <a class="nav-link" href="verifikasi.php">
             <i class="fas fa-fw fa-check-circle"></i>
-            <span>Verifikasi</span></a>
-        </li>
-
-        <!-- Nav Item - Entry -->
-        <li class="nav-item <?php
-          if($_SESSION['menu']=='entry'){
-            echo('active');
-          }
-        ?>">
-          <a class="nav-link" href="entry.php">
-            <i class="fas fa-fw fa-upload"></i>
-            <span>Entry</span></a>
+            <span>Daily Update</span></a>
         </li>
 
         <!-- Divider -->
