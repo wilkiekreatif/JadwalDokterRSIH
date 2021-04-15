@@ -47,7 +47,7 @@ body {
 .list-dokter {
 	margin-left: 5%;
 	margin-right: 5%;
-	padding-top: 2%;
+	padding-top: 2px;
 	display: flex;
 	flex: wrap;
 
@@ -106,8 +106,6 @@ body {
 	color: white;
 	line-height: 50px;
 	background-color: #00C7AC;
-	position: absolute;
-	bottom: 0px;
 	width: 100%;
 	line-height: 50px;
 	text-align: center;
@@ -134,9 +132,9 @@ body {
 }
 
 .dok h5 {
-	animation-name: example;
-	animation-duration: 4s;
-	color: black;
+	/* animation-name: example; */
+	/* animation-duration: 4s; */
+	/* color: black; */
 	text-align: center;
 }
 

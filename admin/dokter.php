@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
   session_start();
-  $_SESSION['menu']='user';
+  $_SESSION['menu']='dokter';
  
  //agar tidak bisa di akses jika tidak login
   if (empty($_SESSION['username'])) {
@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>User Portal Information - RSIH</title>
+  <title>Master Dokter - RSIH</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,14 +56,14 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">User</h1>
-            <a href="#tambah_pemberkasan" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-upload fa-sm text-white-50"></i> Tambah User</a>
+            <h1 class="h3 mb-2 text-gray-800">Master Dokter Poli RSIH</h1>
+            <a href="#tambah_pemberkasan" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Dokter Poli</a>
           </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Dokter</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -72,8 +72,9 @@
                     <tr>
                       <th>No</th>
                       <th>Nama</th>
-                      <th>Username</th>
-                      <th>Bagian</th>
+                      <th>Spesialis</th>
+                      <th>Lokasi Praktek</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -88,7 +89,7 @@
                     <?php
                       $level=$_SESSION['level'];
                       //membuat query membaca record dari tabel User      
-                      $query="SELECT * FROM user WHERE level='$level'";
+                      $query="SELECT * FROM dokter ORDER BY nama ASC";
                       //menjalankan query      
                       if (mysqli_query($connect,$query)) {      
                         $result=mysqli_query($connect,$query);     
@@ -100,9 +101,18 @@
                         while($row = mysqli_fetch_array($result)) {      
                           echo "<tr>";
                           echo "  <td>".$no."</td>";    
-                          echo "  <td>".$row["nama_lengkap"]."</td>";
-                          echo "  <td>".$row["username"]."</td>";      
-                          echo "  <td>".$row["bagian"]."</td>";
+                          echo "  <td>".$row["nama"]."</td>";
+                          echo "  <td>".$row["spesialis"]."</td>"; 
+                          if($row["lokasi"]==0){
+                            echo "  <td> Poli Depan </td>";
+                          }else{
+                            echo "  <td> Poli Belakang </td>";
+                          }  
+                          if($row["status"]==0){
+                            echo "  <td> Aktif </td>";
+                          }else{
+                            echo "  <td> Tidak Aktif </td>";
+                          }  
                           // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
                           // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
                           // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
@@ -162,20 +172,20 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Input Progres Pemberkasan</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Dokter Baru</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
           <!-- FORM INPUT PEMBERKASAN -->
-          <form action="vpemberkasan.php" method="post">
+          <form action="vdokter.php" method="post">
             <div class="form-group has-feedback">
-              <input required type="text" name="username" class="form-control" placeholder="Username..." maxlength="6">
+              <input required type="text" name="nama" class="form-control" placeholder="Nama Lengkap disertai Gelar..." maxlength="255">
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-              <input required type="password" name="password" class="form-control" placeholder="Password..." maxlength="6">
+              <input required type="text" name="text" class="form-control" placeholder="Spesialis..." maxlength="160">
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">

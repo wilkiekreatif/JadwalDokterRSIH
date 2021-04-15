@@ -15,22 +15,24 @@
 			<h4 class="tanggal"><?php
 				//menampilkan tanggal hari ini
 				echo date('l, d-m-Y');
+				$hari = date('l');
 			?></h4>
 			<h4 class="jam"><?php
 				// menampilkan jam sekarang
-				echo date('H:i:s');
+				//echo date('H:i:s');
 			?></h4>
 			<h1>POLIKLINIK RUMAH SAKIT INTAN HUSADA</h1>
 		</div>
 	</header>
 
-	<div class="list-dokter">
+	<div class="title-jadwal">
 		<h2>JADWAL DOKTER HARI INI</h2>
-
+	</div>
+	<div class="list-dokter">
 		<!-- loop menampilkan dokter -->
 		<?php
 			//membuat query membaca record dari tabel User      
-			$query="SELECT a.*,b.* FROM dokter a, jadwal b WHERE b.id_dr=a.id";
+			$query="SELECT a.*,b.* FROM dokter a, jadwal b WHERE (b.id_dr=a.id AND b.hari_praktek='$hari') AND a.lokasi='1'";
 			//menjalankan query      
 			if (mysqli_query($connect,$query)) {      
 			$result=mysqli_query($connect,$query);     
@@ -77,7 +79,7 @@
 	<div class="footer">
         Copyright &copy; 2021
         Designed by isfan.ff
-    </div
+	</div>
 	
 </body>
 

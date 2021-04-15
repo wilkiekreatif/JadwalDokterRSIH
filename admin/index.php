@@ -69,11 +69,14 @@
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
                             //Menampilkan total pemberkasan
-                            if(empty($totalentry)){
-                              echo('0');
-                            }else{
-                              echo($totalentry);
-                            }
+                            $hari = date('l');
+                            $q = mysqli_query($connect,"SELECT COUNT(*) AS TOTAL FROM dokter a, jadwal b WHERE b.id_dr=a.id AND b.hari_praktek='$hari'");
+										        $data = mysqli_fetch_array($q);
+										        echo($data['TOTAL']);
+
+                            // $query($connect,"SELECT COUNT(*) AS TOTAL FROM dokter a, jadwal b WHERE b.id_dr=a.id AND b.hari_praktek='$hari'");
+                            // $data = mysqli_fetch_array($query);
+                            // echo($data['TOTAL']);
                           ?> Dokter</div>
                         </div>
                       </div>
@@ -97,11 +100,9 @@
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
                             //Menampilkan jumlah dokter praktek
-                            if(empty($totalentry)){
-                              echo('0');
-                            }else{
-                              echo($totalentry);
-                            }
+                            $q = mysqli_query($connect,"SELECT COUNT(*) AS TOTAL FROM dokter a, jadwal b WHERE (b.id_dr=a.id) AND (b.hari_praktek='$hari') AND a.lokasi='0'");
+										        $data = mysqli_fetch_array($q);
+										        echo($data['TOTAL']);
                           ?> Dokter</div>
                         </div>
                       </div>
@@ -125,11 +126,9 @@
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php
                             //Menampilkan jumlah dokter praktek
-                            if(empty($totalentry)){
-                              echo('0');
-                            }else{
-                              echo($totalentry);
-                            }
+                            $q = mysqli_query($connect,"SELECT COUNT(*) AS TOTAL FROM dokter a, jadwal b WHERE (b.id_dr=a.id) AND (b.hari_praktek='$hari') AND a.lokasi='1'");
+										        $data = mysqli_fetch_array($q);
+										        echo($data['TOTAL']);
                           ?> Dokter</div>
                         </div>
                       </div>
@@ -173,9 +172,8 @@
                       </tfoot>
                       <tbody>
                         <?php
-                          $level=$_SESSION['level'];
                           //membuat query membaca record dari tabel User      
-                          $query="SELECT * FROM user WHERE level='$level'";
+                          $query="SELECT a.*,b.* FROM dokter a, jadwal b WHERE (b.id_dr=a.id) AND (b.hari_praktek='$hari') AND a.lokasi='0'";
                           //menjalankan query      
                           if (mysqli_query($connect,$query)) {      
                             $result=mysqli_query($connect,$query);     
@@ -187,9 +185,13 @@
                             while($row = mysqli_fetch_array($result)) {      
                               echo "<tr>";
                               echo "  <td>".$no."</td>";    
-                              echo "  <td>".$row["nama_lengkap"]."</td>";
-                              echo "  <td>".$row["username"]."</td>";      
-                              echo "  <td>".$row["bagian"]."</td>";
+                              echo "  <td>".$row["nama"]."</td>";
+                              echo "  <td>".$row["spesialis"]."</td>";      
+                              if($row["status"]==0){
+                                echo "  <td> Praktek</td>";
+                              }else{
+                                echo "  <td> Tidak Praktek</td>";
+                              }
                               // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
                               // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
                               // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
@@ -210,7 +212,7 @@
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Daftar Dokter Praktek Hari ini</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Daftar Dokter Praktek Poli Belakang</h6>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -219,23 +221,22 @@
                         <tr>
                           <th>No</th>
                           <th>Nama Dokter</th>
-                          <th>Tempat Praktek</th>
-                          <th>Bagian</th>
+                          <th>Poli</th>
+                          <th>Status</th>
                         </tr>
                       </thead>
                       <tfoot>
-                        <tr>
+                      <tr>
                           <th>No</th>
-                          <th>Nama</th>
-                          <th>Username</th>
-                          <th>Bagian</th>
+                          <th>Nama Dokter</th>
+                          <th>Poli</th>
+                          <th>Status</th>
                         </tr>
                       </tfoot>
                       <tbody>
                         <?php
-                          $level=$_SESSION['level'];
                           //membuat query membaca record dari tabel User      
-                          $query="SELECT * FROM user WHERE level='$level'";
+                          $query="SELECT a.*,b.* FROM dokter a, jadwal b WHERE (b.id_dr=a.id) AND (b.hari_praktek='$hari') AND a.lokasi='1'";
                           //menjalankan query      
                           if (mysqli_query($connect,$query)) {      
                             $result=mysqli_query($connect,$query);     
@@ -247,9 +248,13 @@
                             while($row = mysqli_fetch_array($result)) {      
                               echo "<tr>";
                               echo "  <td>".$no."</td>";    
-                              echo "  <td>".$row["nama_lengkap"]."</td>";
-                              echo "  <td>".$row["username"]."</td>";      
-                              echo "  <td>".$row["bagian"]."</td>";
+                              echo "  <td>".$row["nama"]."</td>";
+                              echo "  <td>".$row["spesialis"]."</td>";      
+                              if($row["status"]==0){
+                                echo "  <td> Praktek</td>";
+                              }else{
+                                echo "  <td> Tidak Praktek</td>";
+                              }
                               // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
                               // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
                               // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
