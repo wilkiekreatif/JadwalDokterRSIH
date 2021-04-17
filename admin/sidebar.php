@@ -8,7 +8,7 @@
         </div> -->
         <div class="sidebar-brand-text mx-3">Portal Information</div>
       </a>
-
+      <?php  ?>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 

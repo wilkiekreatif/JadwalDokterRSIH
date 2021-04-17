@@ -41,11 +41,13 @@
 			if (mysqli_num_rows($result) > 0) {
 				$no='1';
 				//menampilkan hasil query      
-				while($row = mysqli_fetch_array($result)) {      
+				while($row = mysqli_fetch_array($result)) { 
+
 					?>
 						<div class="dok">
-							<a target="_blank" href="<?php echo $row['photo']; ?>">
-								<img src="<?php echo $row['photo']; ?>" width="300" height="300">
+							<a target="_blank" href="<?php
+								echo '../admin/'.$row['photo']; ?>">
+								<img src="<?php echo '../admin/'.$row['photo']; ?>" width="300" height="300">
 							</a>
 							<div class="desc"><?php echo $row['nama']; ?></div>
 							<h4><?php echo $row['spesialis']; ?></h4>

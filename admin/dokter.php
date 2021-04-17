@@ -179,22 +179,24 @@
         </div>
         <div class="modal-body">
           <!-- FORM INPUT PEMBERKASAN -->
-          <form action="vdokter.php" method="post">
+          <form action="vdokter.php" method="post" enctype="multipart/form-data">
             <div class="form-group has-feedback">
               <input required type="text" name="nama" class="form-control" placeholder="Nama Lengkap disertai Gelar..." maxlength="255">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-              <input required type="text" name="text" class="form-control" placeholder="Spesialis..." maxlength="160">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              <input required type="text" name="spesialis" class="form-control" placeholder="Spesialis..." maxlength="160">
             </div>
             <div class="form-group has-feedback">
-              <input required type="text" name="nama_lengkap" class="form-control" placeholder="Nama Lengkap..." maxlength="255">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              <select Required class="form-control" id="poli" name="poli">
+                <option selected>Lokasi Praktek.. <-- Pilih salah satu --></option>  
+                <option value="0">Poli Depan</option>
+                <option value="1">Poli Belakang</option>
+              </select>
             </div>
+            <hr class="sidebar-divider d-none d-md-block">
             <div class="form-group has-feedback">
-              <input required type="text" name="bagian" class="form-control" placeholder="Bagian..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              <small><p align="justify">* Foto dokter harus memiliki ukuran <b>700x700px</b> dengan size maks <b>1mb</b> dan berekstensi <b>.JPG</b></p></small>
+              <input required type="file" name="fileupload" id="fileupload">
             </div>
         </div>
         <div class="modal-footer">
