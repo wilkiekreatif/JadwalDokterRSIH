@@ -57,7 +57,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-2 text-gray-800">Master Dokter Poli RSIH</h1>
-            <a href="#tambah_pemberkasan" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Dokter Poli</a>
+            <a href="#tambah_dokter" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Dokter Poli</a>
           </div>
 
           <!-- DataTales Example -->
@@ -79,15 +79,15 @@
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>No</th>
+                    <th>No</th>
                       <th>Nama</th>
-                      <th>Username</th>
-                      <th>Bagian</th>
+                      <th>Spesialis</th>
+                      <th>Lokasi Praktek</th>
+                      <th>Status</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <?php
-                      $level=$_SESSION['level'];
                       //membuat query membaca record dari tabel User      
                       $query="SELECT * FROM dokter ORDER BY nama ASC";
                       //menjalankan query      
@@ -168,7 +168,7 @@
   </div>
 
   <!-- tambah Pemberkasan Modal-->
-  <div class="modal fade" id="tambah_pemberkasan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="tambah_dokter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
