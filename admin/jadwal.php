@@ -2,13 +2,13 @@
 <html lang="en">
 <?php
   session_start();
-  $_SESSION['menu']='referensi';
-  include('../config.php');
+  $_SESSION['menu']='user';
  
  //agar tidak bisa di akses jika tidak login
   if (empty($_SESSION['username'])) {
   header('location:../');
   }
+  include('../config.php');
 ?>
 <head>
 
@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Referensi Claim Covid 19 - RSIH</title>
+  <title>User Portal Information - RSIH</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,56 +56,67 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Referensi Data Pasien Covid-19</h1>
+            <h1 class="h3 mb-2 text-gray-800">User</h1>
+            <a href="#tambah_pemberkasan" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-upload fa-sm text-white-50"></i> Tambah User</a>
           </div>
-          <div class="row">
-            <!-- KONTEN REFERENSI -->
-            <div class="col-lg-4 mb-4">
-              <!-- Illustrations -->
-              <div class="card shadow mb-4">
-                <div class="card-body">
-                  <form class="form-horizontal " method="post" action="updatereferensi.php">
-                    <div class="form-group has-feedback">
-                      <label>Periode</label>
-                      <select class="form-control" id="periodecb" name="periodecb">
-                        <?php
-                          $tampil = mysqli_query($connect,"SELECT nama FROM periode");
-                          
-                          $q=mysqli_query($connect,'SELECT * FROM referensi WHERE id="1"');
-                          $data=mysqli_fetch_array($q);
-                          
-                          while ($w = mysqli_fetch_array($tampil)) {
-                            if($data['periode']===$w['nama']){
-                                  $aktif='selected';
-                              }else{
-                                  $aktif='';
-                              }
-                            echo "<option ".$aktif." value=$w[nama]>$w[nama]</option>";
-                          }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="form-group has-feedback">
-                      <label>Tahun</label>
-                      <input maxlength="4" name="tahun" required class="form-control" value="<?php
-                                        echo($data['tahun']);
-                                    ?>"></input>
-                    </div>
-                    <div class="form-group has-feedback">
-                    <label>Jumlah Pasien</label>
-                    <input maxlength="5" name="jml_pasien" required class="form-control" value="<?php
-                                      echo($data['jml_pasien']);
-                                  ?>"></input>
-                    </div>
-                    <div class="form-group has-feedback">
-                      <button type="submit" class="btn btn-primary form-control"><i class="fa fa-save fa-fw"></i> Update Referensi Berkas</button>
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div>              
 
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>Username</th>
+                      <th>Bagian</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>Username</th>
+                      <th>Bagian</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <?php
+                      $level=$_SESSION['level'];
+                      //membuat query membaca record dari tabel User      
+                      $query="SELECT * FROM user WHERE level='$level'";
+                      //menjalankan query      
+                      if (mysqli_query($connect,$query)) {      
+                        $result=mysqli_query($connect,$query);     
+                      } else die ("Error menjalankan query". mysql_error());
+                      //mengecek record kosong     
+                      if (mysqli_num_rows($result) > 0) {
+                        $no='1';
+                        //menampilkan hasil query      
+                        while($row = mysqli_fetch_array($result)) {      
+                          echo "<tr>";
+                          echo "  <td>".$no."</td>";    
+                          echo "  <td>".$row["nama_lengkap"]."</td>";
+                          echo "  <td>".$row["username"]."</td>";      
+                          echo "  <td>".$row["bagian"]."</td>";
+                          // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
+                          // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
+                          // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
+                          echo "</tr>";   
+                          $no++;
+                        }    
+                      }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
+
         </div>
         <!-- /.container-fluid -->
 
@@ -160,10 +171,21 @@
           <!-- FORM INPUT PEMBERKASAN -->
           <form action="vpemberkasan.php" method="post">
             <div class="form-group has-feedback">
-              <input required type="text" name="jml_berkas" class="form-control" placeholder="Jumlah Berkas yang selesai..." maxlength="4">
+              <input required type="text" name="username" class="form-control" placeholder="Username..." maxlength="6">
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
-            <span>* Hanya diisi oleh angka!</span>
+            <div class="form-group has-feedback">
+              <input required type="password" name="password" class="form-control" placeholder="Password..." maxlength="6">
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <input required type="text" name="nama_lengkap" class="form-control" placeholder="Nama Lengkap..." maxlength="255">
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <input required type="text" name="bagian" class="form-control" placeholder="Bagian..." maxlength="6">
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="submit">Simpan Data</button>

@@ -32,7 +32,6 @@
 	// 			header('location:dokter.php?message=success');
 	// 		}else{
     //             // header('location:dokter.php?message=gagal');
-                
 	// 		}
     //     }else{
     //         header('location:dokter.php?error=1');
