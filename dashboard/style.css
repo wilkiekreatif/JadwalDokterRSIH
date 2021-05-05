@@ -1,41 +1,27 @@
-body {
-	margin-left: -1px;
-	margin-right: 0px;
-	margin-top: -21px;
-	font-family: roboto;
+@font-face {
+	font-family: century;
+	src: url(GOTHIC.TTF);
+}
 
+body {
+	margin: 0;
+	font-family: roboto;
 }
 
 .top {
+	font-family: century;
 	background-color: #00C7AC;
-	/* padding-bottom: -1px; */
+	padding-bottom: -1px;
 	border-bottom: solid rgb(255, 79, 79);
-	margin-top: auto;
-	padding: 0px 0px;
+	padding: 2px 0px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
 }
 
 .top h1 {
 	color: white;
 	text-align: center;
+	/* margin-top: 50px; */
 }
-
-.tanggal {
-	height: 30px;
-	color: white;
-	padding-left: 50px;
-	padding-top: 10px;
-
-}
-
-.jam {
-	float: right;
-	color: white;
-	margin-top: -50px;
-	padding-right: 70px;
-}
-
 
 .list-dokter h2 {
 	text-align: center;
@@ -61,7 +47,7 @@ body {
 	/* float:left; */
 	border: 1px solid #ccc;
 	margin: 5px;
-	width: 100%;
+	width: 50%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	text-align: center;
 	/* padding-left: 17px; */
@@ -90,15 +76,15 @@ body {
 	margin-top: -10px;
 	font-size: 13px;
 
-
 }
 
 .desc {
-	padding: 5px;
+	padding: 10px 0px;
+	padding-bottom: 20px;
 	text-align: center;
 	background-color: #00b1be;
 	color: white;
-	font-size: 13px;
+	font-size: 15px;
 	border-bottom: solid rgb(247, 107, 107);
 }
 

@@ -9,28 +9,37 @@
 	<script src="function.js"></script>
 </head>
 <body>
-	
 	<header>
 		<div class="top">
-			<h4 class="tanggal"><?php
-				//menampilkan tanggal hari ini
-				echo date('l, d M Y');
-				$hari = date('l');
-			?></h4>
-			<h4 class="jam"><?php
-				// menampilkan jam sekarang
-				//echo date('H:i:s');
-			?></h4>
-			<h1>POLIKLINIK RUMAH SAKIT INTAN HUSADA</h1>
+			<!-- <h1>POLIKLINIK RUMAH SAKIT INTAN HUSADA</h1> -->
+			<h1 >JADWAL POLIKLINIK HARI INI</h1>
+
+		<div class="title-jadwal">
+			<?php
+				if(date('l')=='Monday'){
+					echo '<h1>Senin, ';
+				}else if(date('l')=='Tuesday'){
+					echo '<h1>Selasa, ';
+				}else if(date('l')=='Wednesday'){
+					echo '<h1>Rabu, ';
+				}else if(date('l')=='Thursday'){
+					echo '<h1>Kamis, ';
+				}else if(date('l')=='Friday'){
+					echo '<h1>Jumat, ';
+				}else if(date('l')=='Saturday'){
+					echo '<h1>Sabtu, ';
+				}else if(date('l')=='Sunday'){
+					echo '<h1>Ahad, ';
+				}
+				echo date('d F Y').'</h1>';
+			?>
+		</div>
 		</div>
 	</header>
-
-	<div class="title-jadwal">
-		<h2>JADWAL DOKTER HARI INI</h2>
-	</div>
 	<div class="list-dokter">
 		<!-- loop menampilkan dokter -->
 		<?php
+			$hari = date('l');
 			//membuat query membaca record dari tabel User      
 			$query="SELECT a.*,b.* FROM dokter a, jadwal b WHERE (b.id_dr=a.id AND b.hari_praktek='$hari') AND a.lokasi='0'";
 			//menjalankan query      
@@ -54,18 +63,9 @@
 							<h3><?php echo $row['jam1']; ?></h3>
 							<h3><?php echo $row['jam2']; ?></h3>
 							<h3><?php echo $row['jam3']; ?></h3>
-							<h5>- Status Pasien -</h5>
+							<!-- <h5>- Status Pasien -</h5> -->
 						</div>
-					<?php
-					// echo "<tr>";
-					// echo "  <td>".$no."</td>";    
-					// echo "  <td>".$row["nama_lengkap"]."</td>";
-					// echo "  <td>".$row["username"]."</td>";      
-					// echo "  <td>".$row["bagian"]."</td>";
-					// echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
-					// echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
-					// echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
-					//echo "</tr>";   
+					<?php  
 					$no++;
 				}    
 			}
@@ -78,10 +78,10 @@
 		</div>
 	</div> -->
 
-	<div class="footer">
+	<!-- <div class="footer">
         Copyright &copy; 2021
         Designed by isfan.ff
-	</div>
+	</div> -->
 	
 </body>
 

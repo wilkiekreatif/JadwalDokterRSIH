@@ -1,0 +1,188 @@
+* {
+    font-family: calibri;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* .main {
+    max-width: 1080px;
+    margin:20px auto;
+    padding: 15px;
+    overflow: hidden;
+} */
+
+
+.header {
+    background-color: #34B3A0;
+    height: 50px;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.logo {
+    float: left;
+    padding-left: 250px;
+    margin-right: 50px;
+    padding-top: 3px;
+  
+}
+
+.logo img {
+    height: 45px;
+    width: 45px;
+}
+
+.title {
+    float: left;
+    color: white;
+}
+
+.title h1 {
+    padding: 5px 3px;
+}
+
+.bor {
+    border-right: solid white;
+}
+
+.date h1 {
+    padding: 5px 15px;
+}
+.date {
+    float: right;
+    background-color: #DA2235;
+    height: 100%;
+    width: 30% ;
+    border-left: 5px solid white;
+    color: white;
+    /* padding-right: 50px; */
+    /* padding-left: 50px; */
+    padding-bottom: 5px;
+}
+
+/* .list1 {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+} */
+
+.dokter {
+    margin-top: 10px;
+    width: 30%;
+    height: 150px;
+    background-color: #34B3A0 ;
+    color: white;
+    margin-left:30px ;
+    border-radius: 10px;
+    float: left;
+    /* flex: auto;
+    width: 30%; */
+}
+
+.dokter img {
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    padding-top: 10px;
+    padding-left: 7px;
+    /* border-radius: 20px 20px 20px 20px ; */
+}
+
+.desc {
+    position: relative;
+    left: 150px;
+    padding-top: 20px;
+}
+
+.name {
+    font-size: 20px;
+}
+.sps {
+    color:  #003f36;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.ket1 {
+    position: absolute;
+    padding-top: 25px;
+    color: #003f36;
+    font-size: 15px;
+}
+
+.ket2 {
+    background-color: white;
+    position: relative;
+    /* height: 6%; */
+    width: 45%;
+    left: 70px;
+    top: 19px;
+    color: #34B3A0;
+    font-size: 11px;
+}
+
+.ket2 h2{
+    padding: 9px 19px;
+   
+}
+
+/* Untuk dokter yang tidak hadir */
+.ket3 {
+    background-color: white;
+    position: relative;
+    height: 40px;
+    width: 45%;
+    left: 70px;
+    top: 19px;
+    color: #DA2235;
+    font-size: 11px;
+}
+
+.ket3 h2{
+    padding: 9px 27px;
+   
+}
+
+
+
+hr {
+    width: 250px;
+    color:white;
+}
+
+.footer {
+    background-color: #DA2235 ;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    /* text-align: center; */
+    height: 7%;
+}
+
+
+.footer img {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 190px;
+    bottom: 0px;
+    top: 10px;
+    left: -40px;
+
+}
+
+.footer li {
+    float: left;
+    list-style: none;
+    padding-right: 35px;
+    position: relative;
+    left: 470px;
+    padding-top: 15px;
+    margin-right: 20px;
+}
+

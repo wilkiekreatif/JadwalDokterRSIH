@@ -52,7 +52,7 @@
 							<h3><?php echo $row['jam1']; ?></h3>
 							<h3><?php echo $row['jam2']; ?></h3>
 							<h3><?php echo $row['jam3']; ?></h3>
-							<h5>- Status Pasien -</h5>
+							<!-- <h5>- Status Pasien -</h5> -->
 						</div>
 					<?php
 					// echo "<tr>";
@@ -76,10 +76,10 @@
 		</div>
 	</div> -->
 
-	<div class="footer">
+	<!-- <div class="footer">
         Copyright &copy; 2021
         Designed by isfan.ff
-	</div>
+	</div> -->
 	
 </body>
 

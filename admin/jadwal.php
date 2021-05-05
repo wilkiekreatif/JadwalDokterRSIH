@@ -2,8 +2,8 @@
 <html lang="en">
 <?php
   session_start();
-  $_SESSION['menu']='user';
- 
+  $_SESSION['menu']='jadwal';
+
  //agar tidak bisa di akses jika tidak login
   if (empty($_SESSION['username'])) {
   header('location:../');
@@ -18,12 +18,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>User Portal Information - RSIH</title>
+  <title>Jadwal Praktek Dokter Poli - RSIH</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -38,7 +38,7 @@
   <div id="wrapper">
 
     <?php
-      include('sidebar.php');
+      include('component/sidebar.php');
     ?>
 
     <!-- Content Wrapper -->
@@ -48,7 +48,7 @@
       <div id="content">
 
         <?php
-          include('topbar.php');
+          include('component/topbar.php');
         ?>
 
         <!-- Begin Page Content -->
@@ -56,14 +56,14 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">User</h1>
-            <a href="#tambah_pemberkasan" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-upload fa-sm text-white-50"></i> Tambah User</a>
+            <h1 class="h3 mb-2 text-gray-800">Jadwal Dokter Poli</h1>
+            <a href="#tambah_jadwal" class="btn btn-sm btn-success" id="CustId" data-toggle="modal"><i class="fas fa-upload fa-sm text-white-50"></i> Tambah Jadwal Dokter Poli</a>
           </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Jadwal Praktek Dokter Poli</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -72,23 +72,24 @@
                     <tr>
                       <th>No</th>
                       <th>Nama</th>
-                      <th>Username</th>
-                      <th>Bagian</th>
+                      <th>Hari | Shift</th>
+                      <th>Jam Praktek</th>
+                      <th>#</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>No</th>
+                    <th>No</th>
                       <th>Nama</th>
-                      <th>Username</th>
-                      <th>Bagian</th>
+                      <th>Hari | Shift</th>
+                      <th>jam Praktek</th>
+                      <th>#</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <?php
-                      $level=$_SESSION['level'];
                       //membuat query membaca record dari tabel User      
-                      $query="SELECT * FROM user WHERE level='$level'";
+                      $query="SELECT a.*,b.* FROM jadwal a, dokter b WHERE a.id_dr = b.id";
                       //menjalankan query      
                       if (mysqli_query($connect,$query)) {      
                         $result=mysqli_query($connect,$query);     
@@ -100,12 +101,27 @@
                         while($row = mysqli_fetch_array($result)) {      
                           echo "<tr>";
                           echo "  <td>".$no."</td>";    
-                          echo "  <td>".$row["nama_lengkap"]."</td>";
-                          echo "  <td>".$row["username"]."</td>";      
-                          echo "  <td>".$row["bagian"]."</td>";
+                          echo "  <td>".$row["nama"]."</td>";
+                          if($row['hari_praktek']=='Monday'){
+                            echo "<td>Senin | ".$row["shift"]."</td>";
+                          }else if($row['hari_praktek']=='Tuesday'){
+                            echo "<td>Selasa | ".$row["shift"]."</td>";
+                          }else if($row['hari_praktek']=='Wednesday'){
+                            echo "<td>Rabu | ".$row["shift"]."</td>";
+                          }else if($row['hari_praktek']=='Thursday'){
+                            echo "<td>Kamis | ".$row["shift"]."</td>";
+                          }else if($row['hari_praktek']=='Friday'){
+                            echo "<td>Jumat | ".$row["shift"]."</td>";
+                          }else if($row['hari_praktek']=='Saturday'){
+                            echo "<td>Sabtu | ".$row["shift"]."</td>";
+                          }else if($row['hari_praktek']=='Sunday'){
+                            echo "<td>Ahad | ".$row["shift"]."</td>";
+                          }
+                          // echo "  <td>".$row["hari_praktek"]."</td>";      
+                          echo "  <td>".$row["jam1"]."</td>";
                           // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
-                          // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
-                          // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
+                          echo "<td width='15%' align='center'> <a href='#editdata' class='btn btn-sm btn-primary' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-trash'></i> Edit</a> |";
+                          echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-trash'></i> Hapus </a></td>";  
                           echo "</tr>";   
                           $no++;
                         }    
@@ -124,7 +140,7 @@
       <!-- End of Main Content -->
 
       <?php
-        include('footer.php');
+        include('component/footer.php');
       ?>
 
     </div>
@@ -139,61 +155,13 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Konfirmasi ulang?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Apakah anda yakin ingin keluar dari dashboard?</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-          <a class="btn btn-primary" href="logout.php">Ya</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php
+    include('modal/logoutmodal.php');
+  ?>
 
-  <!-- tambah Pemberkasan Modal-->
-  <div class="modal fade" id="tambah_pemberkasan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Input Progres Pemberkasan</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- FORM INPUT PEMBERKASAN -->
-          <form action="vpemberkasan.php" method="post">
-            <div class="form-group has-feedback">
-              <input required type="text" name="username" class="form-control" placeholder="Username..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="password" name="password" class="form-control" placeholder="Password..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="text" name="nama_lengkap" class="form-control" placeholder="Nama Lengkap..." maxlength="255">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="text" name="bagian" class="form-control" placeholder="Bagian..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="submit">Simpan Data</button>
-            <button class="btn btn-warning" type="reset">Reset</button>
-          </form>
-        </div>
-      </div>
-    </div>
+  <?php
+    include('modal/tambahjadwal.php');
+  ?>
   </div>
 
   <!-- Bootstrap core JavaScript-->
