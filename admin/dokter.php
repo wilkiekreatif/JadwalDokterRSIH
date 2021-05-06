@@ -38,7 +38,7 @@
   <div id="wrapper">
 
     <?php
-      include('sidebar.php');
+      include('component/sidebar.php');
     ?>
 
     <!-- Content Wrapper -->
@@ -48,7 +48,7 @@
       <div id="content">
 
         <?php
-          include('topbar.php');
+          include('component/topbar.php');
         ?>
 
         <!-- Begin Page Content -->
@@ -134,7 +134,7 @@
       <!-- End of Main Content -->
 
       <?php
-        include('footer.php');
+        include('component/footer.php');
       ?>
 
     </div>
@@ -148,65 +148,10 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Konfirmasi ulang?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Apakah anda yakin ingin keluar dari dashboard?</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-          <a class="btn btn-primary" href="logout.php">Ya</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- tambah Pemberkasan Modal-->
-  <div class="modal fade" id="tambah_dokter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Dokter Baru</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- FORM INPUT PEMBERKASAN -->
-          <form action="vdokter.php" method="post" enctype="multipart/form-data">
-            <div class="form-group has-feedback">
-              <input required type="text" name="nama" class="form-control" placeholder="Nama Lengkap disertai Gelar..." maxlength="255">
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="text" name="spesialis" class="form-control" placeholder="Spesialis..." maxlength="160">
-            </div>
-            <div class="form-group has-feedback">
-              <select Required class="form-control" id="poli" name="poli">
-                <option selected>Lokasi Praktek.. <-- Pilih salah satu --></option>  
-                <option value="0">Poli Depan</option>
-                <option value="1">Poli Belakang</option>
-              </select>
-            </div>
-            <hr class="sidebar-divider d-none d-md-block">
-            <div class="form-group has-feedback">
-              <small><p align="justify">* Foto dokter harus memiliki ukuran <b>700x700px</b> dengan size maks <b>1mb</b> dan berekstensi <b>.JPG</b></p></small>
-              <input required type="file" name="fileupload" id="fileupload">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="submit">Simpan Data</button>
-            <button class="btn btn-warning" type="reset">Reset</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php
+    include('modal/logoutmodal.php');
+    include('modal/tambahdokter.php');
+  ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

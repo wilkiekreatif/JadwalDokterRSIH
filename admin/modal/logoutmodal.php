@@ -10,7 +10,7 @@
         <div class="modal-body">Apakah anda yakin ingin keluar dari dashboard?</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-          <a class="btn btn-primary" href="logout.php">Ya</a>
+          <a class="btn btn-primary" href="control/logout.php">Ya</a>
         </div>
       </div>
     </div>

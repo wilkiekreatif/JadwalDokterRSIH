@@ -1,7 +1,7 @@
 <?php
     //panggil file config.php untuk menghubung ke server
     include('../config.php');
-    
+
 	$nama           = $_POST['nama'];
 	$spesialis 	    = $_POST['spesialis'];
     $poli           = $_POST['poli'];

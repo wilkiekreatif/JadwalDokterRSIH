@@ -38,7 +38,7 @@
   <div id="wrapper">
 
     <?php
-      include('sidebar.php');
+      include('component/sidebar.php');
     ?>
 
     <!-- Content Wrapper -->
@@ -48,7 +48,7 @@
       <div id="content">
 
         <?php
-          include('topbar.php');
+          include('component/topbar.php');
         ?>
 
         <!-- Begin Page Content -->
@@ -124,7 +124,7 @@
       <!-- End of Main Content -->
 
       <?php
-        include('footer.php');
+        include('component/footer.php');
       ?>
 
     </div>
@@ -137,64 +137,10 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Konfirmasi ulang?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Apakah anda yakin ingin keluar dari dashboard?</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
-          <a class="btn btn-primary" href="logout.php">Ya</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- tambah Pemberkasan Modal-->
-  <div class="modal fade" id="tambah_pemberkasan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Input Progres Pemberkasan</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- FORM INPUT PEMBERKASAN -->
-          <form action="vpemberkasan.php" method="post">
-            <div class="form-group has-feedback">
-              <input required type="text" name="username" class="form-control" placeholder="Username..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="password" name="password" class="form-control" placeholder="Password..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="text" name="nama_lengkap" class="form-control" placeholder="Nama Lengkap..." maxlength="255">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback">
-              <input required type="text" name="bagian" class="form-control" placeholder="Bagian..." maxlength="6">
-              <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="submit">Simpan Data</button>
-            <button class="btn btn-warning" type="reset">Reset</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+<?php
+  include('modal/logoutmodal.php');
+  include('modal/tambahuser.php');
+?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -89,7 +89,7 @@
                   <tbody>
                     <?php
                       //membuat query membaca record dari tabel User      
-                      $query="SELECT a.*,b.* FROM jadwal a, dokter b WHERE a.id_dr = b.id";
+                      $query="SELECT a.*,b.nama FROM jadwal a, dokter b WHERE a.id_dr = b.id";
                       //menjalankan query      
                       if (mysqli_query($connect,$query)) {      
                         $result=mysqli_query($connect,$query);     
@@ -118,10 +118,10 @@
                             echo "<td>Ahad | ".$row["shift"]."</td>";
                           }
                           // echo "  <td>".$row["hari_praktek"]."</td>";      
-                          echo "  <td>".$row["jam1"]."</td>";
+                          echo "  <td>".$row["jam"]."</td>";
                           // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
-                          echo "<td width='15%' align='center'> <a href='#editdata' class='btn btn-sm btn-primary' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-trash'></i> Edit</a> |";
-                          echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-trash'></i> Hapus </a></td>";  
+                          echo "<td width='15%' align='center'> <a href='editjadwal.php?id=".$row['id']."' class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-trash'></i> Edit</a> | ";
+                          echo " <a href='control/hapus.php?id=".$row['id']."' class='btn btn-sm btn-danger'><i class='glyphicon glyphicon-trash'></i> Hapus </a></td>";  
                           echo "</tr>";   
                           $no++;
                         }    
@@ -132,7 +132,6 @@
               </div>
             </div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -154,15 +153,11 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
+  <!--Modal-->
   <?php
     include('modal/logoutmodal.php');
-  ?>
-
-  <?php
     include('modal/tambahjadwal.php');
   ?>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
