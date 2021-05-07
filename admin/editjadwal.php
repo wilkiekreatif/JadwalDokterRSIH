@@ -109,7 +109,7 @@
                           <label for="shift">Shift *</label>
                           <select required class="form-control" id="shift">
                             <option <?php if($data['shift']=='Pagi'){echo 'selected';} ?> value="Pagi">Pagi</option>
-                            <option <?php if($data['shift']=='Siang'){echo 'selected';} ?> value="Siang">Siang</option>
+                            <!-- <option <?php if($data['shift']=='Siang'){echo 'selected';} ?> value="Siang">Siang</option> -->
                             <option <?php if($data['shift']=='Sore'){echo 'selected';} ?> value="Sore">Sore</option>
                           </select>
                         </div>
