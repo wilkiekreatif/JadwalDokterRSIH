@@ -159,6 +159,7 @@
                           <th>No</th>
                           <th>Nama Dokter</th>
                           <th>Poli</th>
+                          <th>Shift</th>
                           <th>Status</th>
                         </tr>
                       </thead>
@@ -167,6 +168,7 @@
                           <th>No</th>
                           <th>Nama Dokter</th>
                           <th>Poli</th>
+                          <th>Shift</th>
                           <th>Status</th>
                         </tr>
                       </tfoot>
@@ -186,12 +188,9 @@
                               echo "<tr>";
                               echo "  <td>".$no."</td>";    
                               echo "  <td>".$row["nama"]."</td>";
-                              echo "  <td>".$row["spesialis"]."</td>";      
-                              if($row["status"]==0){
-                                echo "  <td> Praktek</td>";
-                              }else{
-                                echo "  <td> Tidak Praktek</td>";
-                              }
+                              echo "  <td>".$row["spesialis"]."</td>"; 
+                              echo "  <td>".$row["shift"]."</td>";     
+                              echo "  <td>".$row["keterangan"]."</td>";
                               // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
                               // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
                               // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  
@@ -222,6 +221,7 @@
                           <th>No</th>
                           <th>Nama Dokter</th>
                           <th>Poli</th>
+                          <th>Shift</th>
                           <th>Status</th>
                         </tr>
                       </thead>
@@ -230,6 +230,7 @@
                           <th>No</th>
                           <th>Nama Dokter</th>
                           <th>Poli</th>
+                          <th>Shift</th>
                           <th>Status</th>
                         </tr>
                       </tfoot>
@@ -250,11 +251,8 @@
                               echo "  <td>".$no."</td>";    
                               echo "  <td>".$row["nama"]."</td>";
                               echo "  <td>".$row["spesialis"]."</td>";      
-                              if($row["status"]==0){
-                                echo "  <td> Praktek</td>";
-                              }else{
-                                echo "  <td> Tidak Praktek</td>";
-                              }
+                              echo "  <td>".$row["shift"]."</td>";     
+                              echo "  <td>".$row["keterangan"]."</td>";
                               // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
                               // echo " <a href='#accModal' class='btn btn-sm btn-success' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-ok'></i> </a> ";
                               // echo " <a href='#myModal' class='btn btn-sm btn-danger' id='CustId' data-toggle='modal' data-id=".$row['id']."><i class='glyphicon glyphicon-remove'></i> </a></td>";  

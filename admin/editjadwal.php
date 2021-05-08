@@ -121,7 +121,7 @@
                           <label for="status">Status Praktek *</label>
                           <select required class="form-control" id="status">
                             <?php
-                            $tampil = mysqli_query($connect,"SELECT * FROM status_dr ORDER BY keterangan");
+                            $tampil = mysqli_query($connect,"SELECT * FROM status_dr ORDER BY keterangan DESC");
                             while ($w = mysqli_fetch_array($tampil)) {
                               if($data['keterangan']==$w[keterangan]){
                                 echo "<option selected value='".$w[keterangan]."'>".$w[keterangan]."</option>";
@@ -135,8 +135,8 @@
 
                         <div class="form-group">
                           <label for="jam">Jam Praktek</label>
-                          <input type="text" class="form-control" id="jam" value="<?php echo $data['jam']; ?>" placeholder="format: HH:MM-HH:MM">
-                          <small id="jam" class="form-text text-muted">diisi jika status praktek HADIR</small>
+                          <input type="text" class="form-control" id="jam" value="<?php echo $data['jam']; ?>" placeholder="format: HH:MM - HH:MM" maxlength="13">
+                          <small id="jam" class="form-text text-muted">Aktif jika status praktek HADIR</small>
                         </div>
                       </div>
 

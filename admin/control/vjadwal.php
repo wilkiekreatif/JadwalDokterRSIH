@@ -1,10 +1,11 @@
 <?php
     //panggil file config.php untuk menghubung ke server
-    include('../config.php');
+    include('../../config.php');
     
-	$nama           = $_POST['nama'];
-	$spesialis 	    = $_POST['spesialis'];
-    $poli           = $_POST['poli'];
+	$id     = $_POST['id'];
+	$hari 	= $_POST['hari'];
+    $shift  = $_POST['shift'];
+    $jam    = $_POST['jam'];
 
     //$ekstensi_diperbolehkan	= array('jpg','png','bmp');
     
@@ -22,16 +23,16 @@
         // if($ukuran < 1044070){
 		// 	$lokasi = 'img/'.$nama.'.'.$ekstensi;
         //     move_uploaded_file($file_tmp,$lokasi);
-			$query = mysqli_query($connect,"INSERT INTO jadwal VALUES(default,'$nama','$spesialis','$poli','$lokasi','0')");
-            // cek hasil query
-            // if (!$query) {
-            //     die('Query Error : '.mysqli_errno($link). 
-            //     ' - '.mysqli_error($link));
-            // }
+			$query = mysqli_query($connect,"INSERT INTO jadwal VALUES(default,'$id','$hari','$shift','Hadir','$jam', '0')");
+            //cek hasil query
+            if (!$query) {
+                die('Query Error : '.mysqli_errno($link). 
+                ' - '.mysqli_error($link));
+            }
 			if($query){
-				header('location:dokter.php?message=success');
+				header('location:../jadwal.php?message=success&id='.$id);
 			}else{
-                header('location:dokter.php?message=gagal');
+                header('location:../jadwal.php?message=gagal');
 			}
         // }else{
         //     header('location:dokter.php?error=1');

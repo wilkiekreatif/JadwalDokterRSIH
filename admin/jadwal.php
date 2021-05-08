@@ -74,18 +74,22 @@
                       <th>Nama</th>
                       <th>Hari | Shift</th>
                       <th>Jam Praktek</th>
+                      <th>Keterangan</th>
                       <th>#</th>
                     </tr>
                   </thead>
+
                   <tfoot>
                     <tr>
                     <th>No</th>
                       <th>Nama</th>
                       <th>Hari | Shift</th>
                       <th>jam Praktek</th>
+                      <th>Keterangan</th>
                       <th>#</th>
                     </tr>
                   </tfoot>
+
                   <tbody>
                     <?php
                       //membuat query membaca record dari tabel User      
@@ -117,8 +121,22 @@
                           }else if($row['hari_praktek']=='Sunday'){
                             echo "<td>Ahad | ".$row["shift"]."</td>";
                           }
+
                           // echo "  <td>".$row["hari_praktek"]."</td>";      
+
                           echo "  <td>".$row["jam"]."</td>";
+                          if($row['keterangan']=='Tidak Praktek'){
+                            echo '<td align="center"><span class="badge badge-danger">Tidak Praktek</span></td>';
+                          }else if($row['keterangan']=='Hadir'){
+                            echo '<td align="center"><span class="badge badge-success">Hadir</span></td>';
+                          }else if($row['keterangan']=='Dalam Perjanjian'){
+                            echo '<td align="center"><span class="badge badge-warning">Dalam Perjanjian</span></td>';
+                          }else if($row['keterangan']=='Dalam Konfirmasi'){
+                            echo '<td align="center"><span class="badge badge-warning">Dalam Konfirmasi</span></td>';
+                          }else if($row['keterangan']=='Cuti Sementara'){
+                            echo '<td align="center"><span class="badge badge-danger">Cuti Sementara</span></td>';
+                          }
+                          // echo "  <td>".$row["keterangan"]."</td>";
                           // echo "<td width='14%' align='center'> <a href='../$row[files]' class='btn btn-sm btn-primary'> <i class='glyphicon glyphicon-floppy-save'></i></a>";
                           echo "<td width='15%' align='center'> <a href='editjadwal.php?id=".$row['id']."' class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-trash'></i> Edit</a> | ";
                           echo " <a href='control/hapus.php?id=".$row['id']."' class='btn btn-sm btn-danger'><i class='glyphicon glyphicon-trash'></i> Hapus </a></td>";  

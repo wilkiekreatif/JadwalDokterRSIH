@@ -72,14 +72,14 @@
                     $jam=date("H:i:s");
                     $a = date('H');
                     //echo $jam;
-                    if(($a>=6) && ($a<=14)){
+                    if(($a>=5) && ($a<=14)){
                         $shift = 'Pagi';
                     }else if(($a>=14) && ($a<=21)){
                         $shift = 'Sore';
                     }else{
                         $shift = 'Tutup';
                     }
-                    echo '<h1>'.$hari.', '.date('d').' '.$bulan.' '.date('Y').' | '.$shift.'</h1>';
+                    echo '<h1 align="center">'.$hari.', '.date('d').' '.$bulan.' '.date('Y').' | '.$shift.'</h1>';
                 ?>
             </div>
         </div>
